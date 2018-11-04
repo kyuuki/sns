@@ -1,39 +1,56 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>User:</strong>
-  <a href="/posts/users/<%= @post.user.id %>"><%= @post.user.email %></a>
-</p>
-
-<p>
-  <strong>Content:</strong>
-  <%= @post.content %>
-</p>
-
-<p>
-  <strong>Post date:</strong>
-  <%= @post.post_date %>
-</p>
-
-<p>
-  <strong>Like count:</strong>
-  <%= @post.like_count %>
-</p>
-
-<%= link_to 'Edit', edit_post_path(@post) %> |
-<%= link_to 'Back', posts_path %>
-
-<% @post.comments.each do |comment| %>
-  <%= comment.content %><br><br>
-<% end %>
-
-<%= form_with(model: [@post, @comment], local: true) do |form| %>
-  <div class="field">
-  <%= form.label :content %>
-  <%= form.text_area :content %>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2>投稿詳細</h2>
+    </div>
   </div>
 
-  <div class="actions">
-  <%= form.submit %>
+  <div class="row">
+    <div class="col-12">
+      <p id="notice"><%= notice %></p>
+
+      <p>
+        <strong>User:</strong>
+        <a href="/posts/users/<%= @post.user.id %>"><%= @post.user.email %></a>
+      </p>
+
+      <p>
+        <strong>Content:</strong>
+        <%= @post.content %>
+      </p>
+
+      <p>
+        <strong>Post date:</strong>
+        <%= @post.post_date %>
+      </p>
+
+      <p>
+        <strong>Like count:</strong>
+        <%= @post.like_count %>
+      </p>
+
+      <%= link_to 'Edit', edit_post_path(@post) %> |
+      <%= link_to 'Back', posts_path %>
+
+      <% @post.comments.each do |comment| %>
+        <div class="card">
+          <div class="card-body">
+            <%= comment.content %>
+          </div>
+        </div>
+      <% end %>
+
+      <%= form_with(model: [@post, @comment], local: true) do |form| %>
+        <div class="field">
+        <%= form.label :content %>
+        <%= form.text_area :content %>
+        </div>
+
+        <div class="actions">
+        <%= form.submit %>
+        </div>
+      <% end %>
+
+    </div>
   </div>
-<% end %>
+</div>

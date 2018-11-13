@@ -14,10 +14,14 @@
         <a href="/posts/users/<%= @post.user.id %>"><%= @post.user.email %></a>
       </p>
 
-      <p>
-        <strong>Content:</strong>
-        <%= @post.content %>
-      </p>
+      <div class="card">
+        <div class="card-header">
+          <strong>コンテンツ</strong>
+        </div>
+        <div class="card-body">
+          <%= markdown(@post.content) %>
+        </div>
+      </div>
 
       <p>
         <strong>Post date:</strong>

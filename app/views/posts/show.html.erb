@@ -27,6 +27,8 @@
       <p>
         <strong>Like count:</strong>
         <%= @post.like_count %>
+
+        <%= link_to 'いいね！', "/posts/#{@post.id}/like" %>
       </p>
 
       <%= link_to 'Edit', edit_post_path(@post) %> |

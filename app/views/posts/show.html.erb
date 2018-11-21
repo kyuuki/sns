@@ -4,13 +4,14 @@ $(function(){
   // Ajax button click
   $('#like_button').on('click',function(){
       $.ajax({
-          url:'/like_ajax',
+          url:'/posts/<%= @post.id %>/like_ajax',
           type:'GET'
       })
       // Ajaxリクエストが成功した時発動
       .done( (data) => {
           console.log(data);
-          $('#like_count').text("100");
+          console.log(data["count"]);
+          $('#like_count').text(data["count"]);
       })
       // Ajaxリクエストが失敗した時発動
       .fail( (data) => {

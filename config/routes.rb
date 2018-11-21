@@ -9,6 +9,8 @@ Rails.application.routes.draw do
 
   get '/posts/:id/like', to: 'posts#like'
 
+  get '/posts/:id/like_ajax', to: 'posts#like_ajax'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "welcome#index"
 end

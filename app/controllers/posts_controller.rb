@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy, :like]
+  before_action :set_post, only: [:show, :edit, :update, :destroy, :like, :like_ajax]
   before_action :authenticate_user!, except: [:index, :show] 
 
   def like
@@ -15,10 +15,21 @@ class PostsController < ApplicationController
     render :show
   end
 
+  def like_ajax
+    if @post.like_count.nil?
+      @post.like_count = 0
+    end
+
+    @post.like_count = @post.like_count + 1
+    @post.save
+
+    render json: { "count": @post.like_count }
+  end
+
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.all.order(:created_at)
   end
 
   # GET /posts/1

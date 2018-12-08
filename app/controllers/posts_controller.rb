@@ -11,7 +11,7 @@ class PostsController < ApplicationController
     @post.save
 
     @comment = Comment.new
-    
+
     render :show
   end
 
@@ -29,7 +29,7 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all.order(:created_at)
+    @posts = Post.all.order(post_date: :desc)
   end
 
   # GET /posts/1
